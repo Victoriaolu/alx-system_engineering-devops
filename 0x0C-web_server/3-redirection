@@ -1,21 +1,16 @@
-# Automating project requirements using Puppet
+#!/usr/bin/env bash
+#  A Script that configures a new Ubuntu machine to Perform a 301-redirection
 
-package { 'nginx':
-  ensure => installed,
-}
+# Upadating Packages before Installations
+sudo apt-get update
+sudo apt-get install -y nginx
 
-file_line { 'install':
-  ensure => 'present',
-  path   => '/etc/nginx/sites-enabled/default',
-  after  => 'listen 80 default_server;',
-  line   => 'rewrite ^/redirect_me https://www.github.com/besthor permanent;',
-}
+# Creating an index.html page
+echo "Hello World!" | sudo tee /var/www/html/index.html
 
-file { '/var/www/html/index.html':
-  content => 'Hello World!',
-}
+# Performing a 301 Redirection
+string_for_replacement="server_name _;\n\trewrite ^\/redirect_me https:\/\/github.com\/besthor permanent;"
+sudo sed -i "s/server_name _;/$string_for_replacement/" /etc/nginx/sites-enabled/default
 
-service { 'nginx':
-  ensure  => running,
-  require => Package['nginx'],
-}
+# Restarting Nginx service
+sudo service nginx restart
