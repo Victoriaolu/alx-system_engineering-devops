@@ -1,0 +1,26 @@
+ 
+ Postmortem  : Intermittent downtime on web application
+Issue summary: Duration December 12,2023,9:00am – December 13,2023,3:00pm(UTC)
+Impact:
+1.	Negative impacts on business: The downtime directly translates to revenue loss and operational disruption.
+2.	Customer dissatisfaction: The downtime disrupts the   expected seamless online experience on users.
+Timeline: December 12,2023,10:30pm(UTC): The issue was detected when monitoring alerts indicated a significant increase in response time. The engineering team immediately started investigating the issue suspecting a potential database problem.
+December 13 2023,3.00pm(UTC) the incident was resolved and the web application’s performance returned to normal.
+Root   cause and Resolution: The root cause of the issue was an overloaded cache layer. The increased load on the system caused cache to evict frequently accessed data resulting I higher latency and intermittent failures. The cache’s eviction policy was not adequately configured to handle the sudden surge in traffic.
+To fit the issue, the infrastructure team adjusted the cache configuration by increasing its capacity and optimizing the eviction policy. These measures helps to prevent similar cache overload situations in the future.
+Corrective and preventive measures
+1.optimize cache eviction policies reviews and fine tune the cache eviction policies based on usage patterns and anticipated traffic fluctuations.
+2.scale cache infrastructure: Evaluate the current cache infrastructure and determine if additional resources or distributed caching solutions are required to handle peak loads.
+3.use of uptime monitoring: it involves continuous monitoring of a web availability and performance to detect and address issues before they impact users.
+4.Optimizing webpage speed and load time in preventing downtime and providing a positive user experience.
+Tasks to address the issue:
+
+ 1.Patch cache eviction policies: Adjust the cache eviction policies to prioritize frequently accessed data while considering memory constraints.
+ 2.Evaluate cache infrastructure: Assess the current cache infrastructure’s capacity and explore options for scaling or introducing distributed caching.
+ 3.Implement comprehensive monitoring: Deploy a monitoring solution that covers cache utilization, response times, and database performance, with appropriate alerts.
+4.Conduct load testing: Develop and execute load testing scenarios to validate the system’s performance under varying traffic conditions.
+ 5.Review and update incident response procedures: Enhance the incident response process to ensure swift identification, investigation, and resolution of future incidents.
+In the dynamic and competitive landscape of the digital world, web application downtime can have   profound consequences for business. The key to mitigating this downtime lies in a comprehensive and proactive approach to web application management, by incorporating these   preventative measures into our strategy as well as with the help of an uptime monitoring team, you cannot only minimize the impact of potential disruptions. but also provide a reliable and   positive experience for users and stay resilient in the face of evolving challenges, building a reliable niche in the digital landscape.
+
+
+
