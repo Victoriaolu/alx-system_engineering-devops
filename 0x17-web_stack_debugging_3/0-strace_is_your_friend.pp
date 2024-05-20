@@ -1,6 +1,10 @@
-# Fixes a faulty wordpress site
-exec { 'fix-wordpress':
-  command => 'bash -c "sed -i s/class-wp-locale.phpp/class-wp-locale.php/ \
-/var/www/html/wp-settings.php; service apache2 restart"',
-  path    => '/usr/bin:/usr/sbin:/bin'
+# A puppet manuscript to replace a line in a file on a server
+
+$file_to_edit = '/var/www/html/wp-settings.php'
+
+#replace line containing "phpp" with "php"
+
+exec { 'replace_line':
+  command => "sed -i 's/phpp/php/g' ${file_to_edit}",
+  path    => ['/bin','/usr/bin']
 }
